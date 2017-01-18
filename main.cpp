@@ -8,9 +8,9 @@ AUTHOR : Leon Sautour
 
 
 /*
-Input : none
-Description : Main entry point of the program
-Output : none
+Input: none
+Description: Main entry point of the program
+Output: none
 */
 int main() {
   int array[10] = {2, 1, 5, 5, 7, 8, 4, 6, 10, 9}; //Array that we'll be sorting
