@@ -6,6 +6,9 @@ AUTHOR : Leon Sautour
 
 #include <iostream>
 
+//Prototypes
+void organize(char* array[3], int index);
+int getRank(char letter);
 
 /*
 Input: none
@@ -13,31 +16,52 @@ Description: Main entry point of the program
 Output: none
 */
 int main() {
-  int array[10] = {2, 1, 5, 5, 7, 8, 4, 6, 10, 9}; //Array that we'll be sorting
+  //Our three words
+  char one[3] = {'o', 'n', 'e'};
+  char two[3] = {'t', 'w', 'o'};
+  char leo[3] = {'l', 'e', 'o'};
 
-  //TODO: make the size variable dynamic
-  int size = 10; //Stores the size of the array for future reference
+  char* array[3] = {one, two, leo}; //Array that we'll be sorting
 
-  int loc = 1; //Stores the place of the number were currently looking at
-  int fixedLoc = loc;
-  int temp; //Used for temp stuff
+}
+/*
+Input: pointer to our array, index integer
+Description: organizes the position of a given word in the array
+Output: none
+*/
+void organize(char* array[3], int index) {
 
-  while (fixedLoc <= size) {
-    while (array[loc] < array[loc-1]) {
-        temp = array[loc-1];
-        array[loc-1] = array[loc];
-        array[loc] = temp;
-        loc--;
+  bool organized = false; //Variable we'll be using for our while loop
+
+  char* word1; //Variables we'll be using for the words that we'll take out of the array
+  char* word2;
+
+  int wordLength;
+
+  while (!organized) {
+    word1 = array[index]; //Take the word at index
+    word2 = array[index - 1]; //Take the word right before the index
+
+    //Identify the longest word
+    wordLength = word1.size();
+    if (word2.size() > wordLength) wordLength = word2.size();
+
+    for (int i = 0; i <= wordLength; i++) {
+
+      if (word1[i] == word2[i]) continue; //If the two letters are equal, go back to the beginning of the loop
+
+      else {
+
+      }
     }
-    fixedLoc++;
-    loc = fixedLoc;
+
   }
 
-  //Print out the sorted array
-  for(int i = 0; i <= size; i++) {
-    std::cout << array[i] << std::endl;
-  }
+}
 
+int getRank(char letter) {
+  //NOTE: THERE HAS TO BE A BETTER WAY... I'm just too tired XD
+  char alphabet[24] = {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'}
 }
 
 //Pseudocode :
