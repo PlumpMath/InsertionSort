@@ -6,8 +6,10 @@ AUTHOR : Leon Sautour
 
 #include <iostream>
 
+#define SIZE 3
+
 //Prototypes
-void organize(char* array[3], int index);
+void organize(char* array[3]);
 int getRank(char letter);
 
 /*
@@ -15,7 +17,10 @@ Input: none
 Description: Main entry point of the program
 Output: none
 */
-int main() {
+int main(int argc, char* argv[]) {
+
+  std::cout << "In main function" << std::endl;
+
   //Our three words
   char one[3] = {'o', 'n', 'e'};
   char two[3] = {'t', 'w', 'o'};
@@ -23,45 +28,90 @@ int main() {
 
   char* array[3] = {one, two, leo}; //Array that we'll be sorting
 
+  std::cout << "Variables declared" << std::endl;
+
+  organize(array);
+
+  for (int i = 0; i <= SIZE; i++) {
+    std::cout << array[i] << std::endl;
+  }
+
 }
 /*
 Input: pointer to our array, index integer
 Description: organizes the position of a given word in the array
 Output: none
 */
-void organize(char* array[3], int index) {
+void organize(char* array[3]) {
+
+  std::cout << "In organize function" << std::endl;
 
   bool organized = false; //Variable we'll be using for our while loop
 
   char* word1; //Variables we'll be using for the words that we'll take out of the array
   char* word2;
 
+  //variables to store the rank of our different characters
+  int rank1;
+  int rank2;
+
+  //Temp variables
+  char* temp;
+
   int wordLength;
 
-  while (!organized) {
-    word1 = array[index]; //Take the word at index
-    word2 = array[index - 1]; //Take the word right before the index
+  int fixedLoc = 1;
+  int loc = fixedLoc;
 
-    //Identify the longest word
-    wordLength = word1.size();
-    if (word2.size() > wordLength) wordLength = word2.size();
+  while(fixedLoc <= SIZE) {
 
-    for (int i = 0; i <= wordLength; i++) {
+    loc = fixedLoc;
 
-      if (word1[i] == word2[i]) continue; //If the two letters are equal, go back to the beginning of the loop
+    while (!organized) {
+      word1 = array[loc]; //Take the word at index
+      word2 = array[loc - 1]; //Take the word right before the index
 
-      else {
+      // //Identify the longest word
+      // wordLength = word1.size;
+      // if (word2.size > wordLength) wordLength = word2.size;
 
+      for (int i = 0; i <= wordLength; i++) {
+
+        if (word1[i] == word2[i]) continue; //If the two letters are equal, go back to the beginning of the loop
+
+        else {
+          //Get the ranks of the two different characters
+          rank1 = getRank(word1[i]);
+          rank2 = getRank(word2[i]);
+
+          if (rank1 < rank2) {
+            temp = array[loc-1];
+            array[loc-1] = array[loc];
+            array[loc] = temp;
+            loc--;
+          } else {
+            organized = true;
+          }
+        }
       }
+
     }
+
+    fixedLoc++;
 
   }
 
+  std::cout << "At end of organize function" << std::endl;
+
 }
 
+/*
+INPUT: char letter
+DESCRIPTION: Converts a given char to its ascii value
+OUTPUT: ascii value (int)
+*/
 int getRank(char letter) {
-  //NOTE: THERE HAS TO BE A BETTER WAY... I'm just too tired XD
-  char alphabet[24] = {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'}
+  return (int) letter;
 }
 
 //Pseudocode :
