@@ -5,11 +5,13 @@ AUTHOR : Leon Sautour
 */
 
 #include <iostream>
+#include <string>
+
 
 #define SIZE 3
 
 //Prototypes
-void organize(char* array[3]);
+void organize(std::string array[SIZE]);
 int getRank(char letter);
 
 /*
@@ -22,11 +24,11 @@ int main(int argc, char* argv[]) {
   std::cout << "In main function" << std::endl;
 
   //Our three words
-  char one[3] = {'o', 'n', 'e'};
-  char two[3] = {'t', 'w', 'o'};
-  char leo[3] = {'l', 'e', 'o'};
+  std::string one = "one";
+  std::string two = "two";
+  std::string leo = "leo";
 
-  char* array[3] = {one, two, leo}; //Array that we'll be sorting
+  std::string array[SIZE] = {one, two, leo}; //Array that we'll be sorting
 
   std::cout << "Variables declared" << std::endl;
 
@@ -42,21 +44,21 @@ Input: pointer to our array, index integer
 Description: organizes the position of a given word in the array
 Output: none
 */
-void organize(char* array[3]) {
+void organize(std::string array[SIZE]) {
 
   std::cout << "In organize function" << std::endl;
 
   bool organized = false; //Variable we'll be using for our while loop
 
-  char* word1; //Variables we'll be using for the words that we'll take out of the array
-  char* word2;
+  std::string word1; //Variables we'll be using for the words that we'll take out of the array
+  std::string word2;
 
   //variables to store the rank of our different characters
   int rank1;
   int rank2;
 
   //Temp variables
-  char* temp;
+  std::string temp;
 
   int wordLength;
 
