@@ -5,8 +5,7 @@ AUTHOR : Leon Sautour
 */
 
 #include <iostream>
-#include <string>
-
+#include <string> // @
 
 #define SIZE 3
 
@@ -24,19 +23,32 @@ int main(int argc, char* argv[]) {
   std::cout << "In main function" << std::endl;
 
   //Our three words
+  // char one[3] = {'o', 'n', 'e'};
+  // char two[3] = {'t', 'w', 'o'};
+  // char leo[3] = {'l', 'e', 'o'};
+
+  // your character arrays were using up unseen spaces of memory causing some glitches
+  // instead of using a character array, use the string datatype, which handles this well
+  // its easier to manage,
   std::string one = "one";
   std::string two = "two";
   std::string leo = "leo";
 
-  std::string array[SIZE] = {one, two, leo}; //Array that we'll be sorting
+  // char* array[3] = {one, two, leo}; //Array that we'll be sorting
+  // array of strings is easier to manage
+  std::string array[SIZE] = {one, two, leo};
 
   std::cout << "Variables declared" << std::endl;
 
   organize(array);
 
-  for (int i = 0; i <= SIZE; i++) {
-    std::cout << array[i] << std::endl;
-  }
+
+
+  // organize(array);
+
+  // for (int i = 0; i <= SIZE; i++) {
+  //   std::cout << array[i] << std::endl;
+  // }
 
 }
 /*
@@ -60,7 +72,7 @@ void organize(std::string array[SIZE]) {
   //Temp variables
   std::string temp;
 
-  int wordLength;
+  int wordLength = SIZE;
 
   int fixedLoc = 1;
   int loc = fixedLoc;
@@ -70,8 +82,16 @@ void organize(std::string array[SIZE]) {
     loc = fixedLoc;
 
     while (!organized) {
+
       word1 = array[loc]; //Take the word at index
-      word2 = array[loc - 1]; //Take the word right before the index
+
+      if(loc == 0) {
+        std::cout << "In if statement" << std::endl;
+        organized = true;
+        continue;
+      } else {
+        word2 = array[loc - 1]; //Take the word right before the index
+      }
 
       // //Identify the longest word
       // wordLength = word1.size;
@@ -79,7 +99,10 @@ void organize(std::string array[SIZE]) {
 
       for (int i = 0; i <= wordLength; i++) {
 
-        if (word1[i] == word2[i]) continue; //If the two letters are equal, go back to the beginning of the loop
+        if (word1[i] == word2[i]) {
+
+          continue;
+        } //If the two letters are equal, go back to the beginning of the loop
 
         else {
           //Get the ranks of the two different characters
@@ -87,10 +110,12 @@ void organize(std::string array[SIZE]) {
           rank2 = getRank(word2[i]);
 
           if (rank1 < rank2) {
+
             temp = array[loc-1];
             array[loc-1] = array[loc];
             array[loc] = temp;
             loc--;
+
           } else {
             organized = true;
           }
@@ -104,6 +129,10 @@ void organize(std::string array[SIZE]) {
   }
 
   std::cout << "At end of organize function" << std::endl;
+
+  for(int i = 0; i < SIZE; i++){
+      std::cout << array[i] << std::endl;
+  }
 
 }
 
