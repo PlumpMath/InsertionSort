@@ -109,12 +109,23 @@ void organize(std::string array[SIZE]) {
           rank1 = getRank(word1[i]);
           rank2 = getRank(word2[i]);
 
-          if (rank1 < rank2) {
+          //DEBUG
+          std::cout << word1[i] << " : " << rank1 << std::endl;
+          std::cout << word2[i] << " : " << rank2 << std::endl;
+          std::cout << "Loc before : " << loc << std::endl;
+
+          if (rank1 > rank2) {
+
+            std::cout << "In if statement" << std::endl;
 
             temp = array[loc-1];
             array[loc-1] = array[loc];
             array[loc] = temp;
             loc--;
+
+            std::cout << "Loc after : " << loc << std::endl;
+
+            break;
 
           } else {
             organized = true;
